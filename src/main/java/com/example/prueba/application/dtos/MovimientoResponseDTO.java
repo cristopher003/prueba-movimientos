@@ -1,11 +1,13 @@
 package com.example.prueba.application.dtos;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@Builder
 public class MovimientoResponseDTO {
 
     private Long id;

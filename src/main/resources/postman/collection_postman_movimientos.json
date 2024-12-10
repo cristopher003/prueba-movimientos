@@ -1,0 +1,161 @@
+{
+    "info": {
+        "_postman_id": "7e7ccf3c-c4b0-416b-b9c9-1f368ad55732",
+        "name": "movimientos",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "list",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos",
+                    "path": [
+                        "api",
+                        "movimientos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "getid",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos/24",
+                    "path": [
+                        "api",
+                        "movimientos",
+                        "24"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "getEstado",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos/estado/T",
+                    "path": [
+                        "api",
+                        "movimientos",
+                        "estado",
+                        "T"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "create",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos",
+                    "path": [
+                        "api",
+                        "movimientos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"descripcion\": \"Movimiento de prueba 333\",\r\n  \"idEmpresa\": 1001,\r\n  \"bodegaOrigenCodigo\": \"BOD-01\",\r\n  \"bodegaDestinoCodigo\": \"BOD-02\",\r\n  \"fechaCreacion\": \"2024-12-10T10:00:00\",\r\n  \"fechaEntrega\": \"2024-12-17T10:00:00\",\r\n  \"estado\": \"P\",\r\n  \"detalles\":[\r\n    {\r\n  \"itemCodigo\": \"ITEM-001\",\r\n  \"cantidadEnviada\": 10\r\n    },\r\n  {\r\n  \"itemCodigo\": \"ITEM-001\",\r\n  \"cantidadEnviada\": 12\r\n    }\r\n    ]\r\n}"
+                }
+            }
+        },
+        {
+            "name": "getEstadoCustom",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos/custom/e",
+                    "path": [
+                        "api",
+                        "movimientos",
+                        "custom",
+                        "e"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "update",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos/24",
+                    "path": [
+                        "api",
+                        "movimientos",
+                        "24"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"descripcion\": \"Movimiento de prueba edit\",\n  \"idEmpresa\": 1001,\n  \"bodegaOrigenCodigo\": \"BOD-01\",\n  \"bodegaDestinoCodigo\": \"BOD-02\",\n  \"fechaCreacion\": \"2024-12-10T10:00:00\",\n  \"fechaEntrega\": \"2024-12-17T10:00:00\",\n  \"estado\": \"P\",\n  \"detalles\":[\n    {\n  \"itemCodigo\": \"ITEM-001\",\n  \"cantidadEnviada\": 11\n    },\n  {\n  \"itemCodigo\": \"ITEM-001\",\n  \"cantidadEnviada\": 12\n    }\n    ]\n}"
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimientos/24",
+                    "path": [
+                        "api",
+                        "movimientos",
+                        "24"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        }
+    ]
+}

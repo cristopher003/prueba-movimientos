@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.prueba.application.dtos.MovimientoConDetallesDTO;
+import com.example.prueba.application.dtos.MovimientoDetallesCustomDTO;
 
 @Entity
 @Table(name = "movimiento", schema = "testswisslub")
@@ -20,7 +20,7 @@ import com.example.prueba.application.dtos.MovimientoConDetallesDTO;
 @SqlResultSetMapping(
     name = "MovimientoConDetallesMapping",
     classes = @ConstructorResult(
-        targetClass = MovimientoConDetallesDTO.class,
+        targetClass = MovimientoDetallesCustomDTO.class,
         columns = {
             @ColumnResult(name = "movimiento_id", type = Long.class),
             @ColumnResult(name = "movimiento_detalle_id", type = Long.class),

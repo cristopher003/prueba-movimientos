@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class MovimientoConDetallesDTO {
+public class MovimientoDetallesCustomDTO {
 
     private Long movimientoId;
     private Long movimientoDetalleId;

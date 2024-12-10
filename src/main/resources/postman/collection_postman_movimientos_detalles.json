@@ -1,0 +1,142 @@
+{
+    "info": {
+        "_postman_id": "f1dac4e9-8e22-4628-8de9-0ed046f6b67e",
+        "name": "movimientos_detalles",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "list",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimiento-detalles",
+                    "path": [
+                        "api",
+                        "movimiento-detalles"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "getid",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimiento-detalles/29",
+                    "path": [
+                        "api",
+                        "movimiento-detalles",
+                        "29"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "create",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimiento-detalles",
+                    "path": [
+                        "api",
+                        "movimiento-detalles"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"movimientoId\": 1,\r\n  \"itemCodigo\": \"ITEM-001\",\r\n  \"cantidadEnviada\": 32\r\n}"
+                }
+            }
+        },
+        {
+            "name": "update",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimiento-detalles/29",
+                    "path": [
+                        "api",
+                        "movimiento-detalles",
+                        "29"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"movimientoId\": 2,\r\n  \"itemCodigo\": \"ITEM-001\",\r\n  \"cantidadEnviada\": 3\r\n}"
+                }
+            }
+        },
+        {
+            "name": "findByEstado",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimiento-detalles/estado/e",
+                    "path": [
+                        "api",
+                        "movimiento-detalles",
+                        "estado",
+                        "e"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "findByMovimientoId",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/movimiento-detalles/movimiento/1",
+                    "path": [
+                        "api",
+                        "movimiento-detalles",
+                        "movimiento",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        }
+    ]
+}

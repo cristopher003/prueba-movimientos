@@ -2,9 +2,11 @@ package com.example.prueba.application.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.prueba.application.dtos.MovimientoDetalleRequestDTO;
 import com.example.prueba.application.dtos.MovimientoDetalleResponseDTO;
+import com.example.prueba.application.dtos.MovimientoResponseDTO;
 import com.example.prueba.application.mappers.MovimientoMapper;
 import com.example.prueba.domain.Movimiento;
 import com.example.prueba.domain.MovimientoDetalle;
@@ -26,8 +28,15 @@ public class MovimientoDetalleService {
     @Autowired
     private MovimientoMapper movimientoMapper;
 
-       public MovimientoDetalleResponseDTO createMovimientoDetalle(Long movimientoId, MovimientoDetalleRequestDTO requestDTO) {
-        Movimiento movimiento = movimientoRepository.findById(movimientoId)
+        @Transactional(readOnly = true)
+        public List<MovimientoDetalleResponseDTO> obtenerTodos() {
+            return movimientoDetalleRepository.findAll().stream()
+                .map(movimientoMapper::toResponseDTO)
+                .collect(Collectors.toList());
+        }
+
+       public MovimientoDetalleResponseDTO createMovimientoDetalle( MovimientoDetalleRequestDTO requestDTO) {
+        Movimiento movimiento = movimientoRepository.findById(requestDTO.getMovimientoId())
             .orElseThrow(() -> new RuntimeException("Movimiento no encontrado"));
         MovimientoDetalle detalle = movimientoMapper.toEntity(requestDTO);
         detalle.setMovimiento(movimiento);
@@ -35,8 +44,8 @@ public class MovimientoDetalleService {
         return movimientoMapper.toResponseDTO(detalle);
     }
 
-    public MovimientoDetalleResponseDTO updateMovimientoDetalle(Long movimientoId, Long detalleId, MovimientoDetalleRequestDTO requestDTO) {
-        Movimiento movimiento = movimientoRepository.findById(movimientoId)
+    public MovimientoDetalleResponseDTO updateMovimientoDetalle( Long detalleId, MovimientoDetalleRequestDTO requestDTO) {
+        Movimiento movimiento = movimientoRepository.findById(requestDTO.getMovimientoId())
             .orElseThrow(() -> new RuntimeException("Movimiento no encontrado"));
         MovimientoDetalle detalle = movimientoDetalleRepository.findById(detalleId)
             .orElseThrow(() -> new RuntimeException("Detalle no encontrado"));

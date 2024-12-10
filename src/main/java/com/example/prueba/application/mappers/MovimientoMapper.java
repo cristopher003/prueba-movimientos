@@ -19,16 +19,15 @@ import java.util.stream.Collectors;
 public class MovimientoMapper {
 
      @Autowired
-    private MovimientoRepository movimientoRepository
-    ;
-    // Método para convertir de MovimientoRequestDTO a Movimiento
+    private MovimientoRepository movimientoRepository;
+
+    // convertir de MovimientoRequestDTO a Movimiento
     public Movimiento toEntity(MovimientoRequestDTO requestDTO) {
         if (requestDTO == null) {
             return null;
         }
         Movimiento movimiento = new Movimiento();
-        // Mapear los campos manualmente
-        // movimiento.setId(requestDTO.getId());
+   
         movimiento.setIdEmpresa(requestDTO.getIdEmpresa());
         movimiento.setDescripcion(requestDTO.getDescripcion());
         movimiento.setBodegaOrigenCodigo(requestDTO.getBodegaOrigenCodigo());
@@ -39,56 +38,58 @@ public class MovimientoMapper {
         return movimiento;
     }
 
-    // Método para convertir de Movimiento a MovimientoResponseDTO
+    // convertir de Movimiento a MovimientoResponseDTO
     public MovimientoResponseDTO toResponseDTO(Movimiento movimiento) {
         if (movimiento == null) {
             return null;
         }
-        MovimientoResponseDTO responseDTO = new MovimientoResponseDTO();
-        // Mapear los campos manualmente
-        responseDTO.setId(movimiento.getId());
-        responseDTO.setIdEmpresa(movimiento.getIdEmpresa());
-        responseDTO.setDescripcion(movimiento.getDescripcion());
-        responseDTO.setBodegaOrigenCodigo(movimiento.getBodegaOrigenCodigo());
-        responseDTO.setBodegaDestinoCodigo(movimiento.getBodegaDestinoCodigo());
-        responseDTO.setFechaCreacion(movimiento.getFechaCreacion());
-        responseDTO.setFechaEntrega(movimiento.getFechaEntrega());
-        responseDTO.setEstado(movimiento.getEstado());
-        responseDTO.setDetalles(toDetalleResponseDTOList(movimiento.getDetalles()));
-        return responseDTO;
+
+          return MovimientoResponseDTO.builder()
+            .id(movimiento.getId())
+            .idEmpresa(movimiento.getIdEmpresa())
+            .descripcion(movimiento.getDescripcion())
+            .bodegaOrigenCodigo(movimiento.getBodegaOrigenCodigo())
+            .bodegaDestinoCodigo(movimiento.getBodegaDestinoCodigo())
+            .fechaCreacion(movimiento.getFechaCreacion())
+            .fechaEntrega(movimiento.getFechaEntrega())
+            .estado(movimiento.getEstado())
+            .detalles(toDetalleResponseDTOList(movimiento.getDetalles()))
+            .build();
+
     }
 
-    // Método para convertir de MovimientoDetalleRequestDTO a MovimientoDetalle
+    // convertir de MovimientoDetalleRequestDTO a MovimientoDetalle
     public MovimientoDetalle toEntity(MovimientoDetalleRequestDTO requestDTO) {
         if (requestDTO == null) {
             return null;
         }
         MovimientoDetalle detalle = new MovimientoDetalle();
-        Movimiento movimiento = movimientoRepository.findById(requestDTO.getMovimientoId())
-        .orElseThrow(() -> new RuntimeException("Movimiento no encontrado"));
-        // Mapear los campos manualmente
-        // detalle.setId(requestDTO.getId());
-        detalle.setMovimiento(movimiento);
+        if (requestDTO.getMovimientoId()!=null) {
+            Movimiento movimiento = movimientoRepository.findById(requestDTO.getMovimientoId())
+            .orElseThrow(() -> new RuntimeException("Movimiento no encontrado"));
+            detalle.setMovimiento(movimiento);
+        }
+       
         detalle.setItemCodigo(requestDTO.getItemCodigo());
         detalle.setCantidadEnviada(requestDTO.getCantidadEnviada());
         return detalle;
     }
 
-    // Método para convertir de MovimientoDetalle a MovimientoDetalleResponseDTO
+    //convertir de MovimientoDetalle a MovimientoDetalleResponseDTO
     public MovimientoDetalleResponseDTO toResponseDTO(MovimientoDetalle detalle) {
         if (detalle == null) {
             return null;
         }
-        MovimientoDetalleResponseDTO responseDTO = new MovimientoDetalleResponseDTO();
-        // Mapear los campos manualmente
-        responseDTO.setId(detalle.getId());
-        responseDTO.setMovimientoId(detalle.getMovimiento().getId());
-        responseDTO.setItemCodigo(detalle.getItemCodigo());
-        responseDTO.setCantidadEnviada(detalle.getCantidadEnviada());
-        return responseDTO;
+
+        return MovimientoDetalleResponseDTO.builder()
+        .id(detalle.getId())
+        .movimientoId(detalle.getMovimiento().getId())
+        .itemCodigo(detalle.getItemCodigo())
+        .cantidadEnviada(detalle.getCantidadEnviada()).build();
+        
     }
 
-    // Método para convertir de lista de Movimiento a lista de MovimientoResponseDTO
+    // convertir de lista de Movimiento a lista de MovimientoResponseDTO
     public List<MovimientoResponseDTO> toResponseDTOList(List<Movimiento> movimientos) {
         if (movimientos == null) {
             return null;
@@ -98,7 +99,7 @@ public class MovimientoMapper {
                 .collect(Collectors.toList());
     }
 
-    // Método para convertir de lista de MovimientoDetalle a lista de MovimientoDetalleResponseDTO
+    //  convertir de lista de MovimientoDetalle a lista de MovimientoDetalleResponseDTO
     public List<MovimientoDetalleResponseDTO> toDetalleResponseDTOList(List<MovimientoDetalle> detalles) {
         if (detalles == null) {
             return null;

@@ -17,36 +17,40 @@ public class MovimientoDetalleController {
     @Autowired
     private MovimientoDetalleService movimientoDetalleService;
 
-       @PostMapping
+      @GetMapping
+    public List<MovimientoDetalleResponseDTO> obtenerTodos() {
+        return movimientoDetalleService.obtenerTodos();
+     }
+
+    @PostMapping
     public ResponseEntity<MovimientoDetalleResponseDTO> createMovimientoDetalle(
-        @PathVariable Long movimientoId, @RequestBody MovimientoDetalleRequestDTO requestDTO) {
-        return ResponseEntity.ok(movimientoDetalleService.createMovimientoDetalle(movimientoId, requestDTO));
+        @RequestBody MovimientoDetalleRequestDTO requestDTO) {
+        return ResponseEntity.ok(movimientoDetalleService.createMovimientoDetalle(requestDTO));
  
     }
 
     @PutMapping("/{detalleId}")
     public ResponseEntity<MovimientoDetalleResponseDTO> updateMovimientoDetalle(
-        @PathVariable Long movimientoId, 
         @PathVariable Long detalleId, 
         @RequestBody MovimientoDetalleRequestDTO requestDTO) {
-        return ResponseEntity.ok(movimientoDetalleService.updateMovimientoDetalle(movimientoId, detalleId, requestDTO));
+        return ResponseEntity.ok(movimientoDetalleService.updateMovimientoDetalle(detalleId, requestDTO));
     }
     
-    // Obtener un movimiento detalle por id
+    // movimiento detalle por id
     @GetMapping("/{id}")
     public ResponseEntity<MovimientoDetalleResponseDTO> getMovimientoDetalleById(@PathVariable Long id) {
         MovimientoDetalleResponseDTO detalleDTO = movimientoDetalleService.getMovimientoDetalleById(id);
         return ResponseEntity.ok(detalleDTO);
     }
 
-    // Obtener detalles por estado
+    //  detalles por estado
     @GetMapping("/estado/{estado}")
     public ResponseEntity<List<MovimientoDetalleResponseDTO>> getDetallesByEstado(@PathVariable String estado) {
         List<MovimientoDetalleResponseDTO> detalles = movimientoDetalleService.getDetallesByEstado(estado);
         return ResponseEntity.ok(detalles);
     }
 
-    // Obtener detalles por movimiento_id
+    //  detalles por movimiento_id
     @GetMapping("/movimiento/{movimientoId}")
     public ResponseEntity<List<MovimientoDetalleResponseDTO>> getDetallesByMovimientoId(@PathVariable Long movimientoId) {
         List<MovimientoDetalleResponseDTO> detalles = movimientoDetalleService.getDetallesByMovimientoId(movimientoId);
