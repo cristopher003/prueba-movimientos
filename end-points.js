@@ -1,7 +1,5 @@
-Endpoint: POST /api/movimientos
+// Endpoint: POST /api/movimientos
 
-json
-Copiar código
 {
   "descripcion": "Movimiento de prueba 1",
   "idEmpresa": 1001,
@@ -11,20 +9,18 @@ Copiar código
   "fechaEntrega": "2024-12-17T10:00:00",
   "estado": "P"
 }
-2. MovimientoDetalle - Ejemplo de petición para crear un detalle de movimiento
-Endpoint: POST /api/movimientos/{movimientoId}/detalles
+// 2. MovimientoDetalle - Ejemplo de petición para crear un detalle de movimiento
+// Endpoint: POST /api/movimientos/{movimientoId}/detalles
 
-json
-Copiar código
+,
 {
   "itemCodigo": "ITEM-001",
   "cantidadEnviada": 10
 }
-3. Movimiento - Ejemplo de petición para actualizar un movimiento
-Endpoint: PUT /api/movimientos/{movimientoId}
+// 3. Movimiento - Ejemplo de petición para actualizar un movimiento
+// Endpoint: PUT /api/movimientos/{movimientoId}
 
-json
-Copiar código
+
 {
   "descripcion": "Movimiento actualizado",
   "idEmpresa": 1001,
@@ -34,20 +30,18 @@ Copiar código
   "fechaEntrega": "2024-12-17T10:00:00",
   "estado": "T"
 }
-4. MovimientoDetalle - Ejemplo de petición para actualizar un detalle de movimiento
-Endpoint: PUT /api/movimientos/{movimientoId}/detalles/{detalleId}
+// 4. MovimientoDetalle - Ejemplo de petición para actualizar un detalle de movimiento
+// Endpoint: PUT /api/movimientos/{movimientoId}/detalles/{detalleId}
 
-json
-Copiar código
+
 {
   "itemCodigo": "ITEM-001",
   "cantidadEnviada": 15
 }
-5. Movimiento - Ejemplo de petición para obtener un movimiento por ID
-Endpoint: GET /api/movimientos/{movimientoId}
+// 5. Movimiento - Ejemplo de petición para obtener un movimiento por ID
+// Endpoint: GET /api/movimientos/{movimientoId}
 
-json
-Copiar código
+
 {
   "id": 1,
   "descripcion": "Movimiento de prueba 1",
@@ -58,11 +52,10 @@ Copiar código
   "fechaEntrega": "2024-12-17T10:00:00",
   "estado": "P"
 }
-6. MovimientoDetalle - Ejemplo de petición para obtener detalles de un movimiento
-Endpoint: GET /api/movimientos/{movimientoId}/detalles
+// 6. MovimientoDetalle - Ejemplo de petición para obtener detalles de un movimiento
+// Endpoint: GET /api/movimientos/{movimientoId}/detalles
 
-json
-Copiar código
+
 [
   {
     "id": 1,
@@ -75,11 +68,10 @@ Copiar código
     "cantidadEnviada": 20
   }
 ]
-7. MovimientoDetalle - Ejemplo de petición para obtener detalles de un movimiento por estado
-Endpoint: GET /api/movimientos/{movimientoId}/detalles/estado/{estado}
+// 7. MovimientoDetalle - Ejemplo de petición para obtener detalles de un movimiento por estado
+// Endpoint: GET /api/movimientos/{movimientoId}/detalles/estado/{estado}
 
-json
-Copiar código
+,
 [
   {
     "id": 1,
@@ -92,11 +84,10 @@ Copiar código
     "cantidadEnviada": 20
   }
 ]
-8. Movimiento - Ejemplo de petición para buscar movimientos por estado
-Endpoint: GET /api/movimientos/estado/{estado}
+// 8. Movimiento - Ejemplo de petición para buscar movimientos por estado
+// Endpoint: GET /api/movimientos/estado/{estado}
 
-json
-Copiar código
+,
 [
   {
     "id": 1,
@@ -118,7 +109,7 @@ Copiar código
     "fechaEntrega": "2024-12-17T10:00:00",
     "estado": "P"
   }
-]
+],
 // 9. MovimientoDetalle - Ejemplo de petición para obtener detalles específicos
 // Endpoint: GET /api/movimientos/detalles/{detalleId}
 
